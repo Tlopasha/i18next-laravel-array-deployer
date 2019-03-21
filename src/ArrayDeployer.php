@@ -27,7 +27,7 @@ class ArrayDeployer
         $values = preg_replace_callback('/\B:\w+/', array(__CLASS__, 'i18nextAddInterpolation'), json_decode(json_encode($values), TRUE));
     }
 
-    
+
     /**
      * @return array
      */
