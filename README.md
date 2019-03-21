@@ -60,7 +60,9 @@ Example of code in app.js:
 ```
 import i18next from 'i18next';
 import Backend from 'i18next-xhr-backend';
+import Cache from 'i18next-localstorage-cache';
 import VueI18Next from '@panter/vue-i18next';
+
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -87,14 +89,20 @@ i18nextLib.init({
         lng: window.Laravel.locales.lng,  // window.Laravel.locales.lng => you should implement your solution
         fallbackLng: window.Laravel.locales.fallbackLng,  // window.Laravel.locales.fallbackLng => ^ as above ^
         debug: true,
+        cache: {
+            enabled: true,
+            prefix: 'i18next_res_',
+            expirationTime: 7*24*60*60*1000,
+            versions: { en: 'v1.1', it: 'v1.0' }, // here we should define translations versions
+        },
         backend: {
             customHeaders: {
                 'X-CSRF-TOKEN': window.Laravel.csrfToken  // window.Laravel.csrfToken => ^ as above ^
             },
-            loadPath: window.Laravel.url('/locales/{{lng}}/{{ns}}.json'),
-            addPath: window.Laravel.url('/locales/{{lng}}/{{ns}}'),
+            loadPath: window.Laravel.url('/locales/{{lng}}/{{ns}}.json'), // window.Laravel.url('...') => ^ as above ^
+            addPath: window.Laravel.url('/locales/{{lng}}/{{ns}}'), // ^ as above ^
             parse: function (data) {
-                console.log(data);
+                console.log(data);  // json data for debug
                 return JSON.parse(data);
             },
         },
@@ -116,6 +124,7 @@ Object.keys(window.Laravel.locales.translations).forEach(function(k){
 let i18n = new VueI18Next(i18next);
 
 ...
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
