@@ -1,0 +1,29 @@
+{
+    "name": "tommasomatteini/i18next-laravel-array-deployer",
+    "description": "This utility deploys Laravel's translation arrays and make them capable compatible with i18next javascript module.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tommaso Matteini",
+            "email": "to.matteini@gmail.com",
+            "homepage": "https://tommasomatteini.it",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^5.3|^7.0",
+        "laravel/framework": "5.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "TommasoMatteini\\i18NextLaravelArrayDeployer\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
