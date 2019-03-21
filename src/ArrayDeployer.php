@@ -14,13 +14,16 @@ class ArrayDeployer
 
     private $data = array();
 
+    private static $prefix = '{{',
+                   $suffix = '}}';
+
     public function __construct($data) {
         $this->data = $data;
         array_walk_recursive($this->data, array(__CLASS__, 'i18nextAdapt') );
     }
 
-    private static function i18nextAddInterpolation($values, $prefix = '{{', $suffix = '}}') {
-        return $value = $prefix . ltrim($values[0], ':') . $suffix;
+    private static function i18nextAddInterpolation($values) {
+        return $value = self::$prefix . ltrim($values[0], ':') . self::$suffix;
     }
 
     private static function i18nextAdapt(&$values) {
